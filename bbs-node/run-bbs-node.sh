@@ -13,5 +13,5 @@ exec podman run -it --rm --cap-add SYS_ADMIN --name "bbs-node-$AXCALLSIGN" --rep
 	--mount "type=volume,source=home-$AXCALLSIGN,destination=/home/$AXCALLSIGN" \
 	--mount "type=volume,source=bbs-mailspool,destination=/var/mail" \
 	--mount "type=volume,source=bbs-data,destination=/data,ro=true" \
-	--net container:bbs --hostname localhost \
-	bbs
+	--net container:bbs-net --hostname localhost \
+	bbs-node
