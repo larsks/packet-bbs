@@ -1,0 +1,5 @@
+#!/bin/sh
+
+umask 007
+mkdir -p "/vmail/$1"
+cat >> "/vmail/$1/$1"

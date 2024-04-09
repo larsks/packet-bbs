@@ -1,0 +1,8 @@
+[Container]
+ContainerName=bbs-net
+Image=docker.io/alpine:latest
+RunInit=true
+Exec=sleep inf
+
+[Install]
+WantedBy=default.target

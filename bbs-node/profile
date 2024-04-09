@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PAGER=less
+export PAGER
+LESS="-dEF"
+export LESS
+PS1="\u> "

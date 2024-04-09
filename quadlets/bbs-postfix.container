@@ -1,0 +1,13 @@
+[Unit]
+Requires=bbs-mailspool-volume.service bbs-data-volume.service bbs-net.service
+After=bbs-mailspool-volume.service bbs-data-volume.service bbs-net.service
+
+[Container]
+ContainerName=bbs-postfix
+Image=bbs-postfix
+Network=container:bbs-net
+Volume=bbs-mailspool:/vmail:z
+Volume=bbs-data:/data:z
+
+[Install]
+WantedBy=default.target

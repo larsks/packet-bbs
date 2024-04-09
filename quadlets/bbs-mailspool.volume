@@ -1,0 +1,5 @@
+[Volume]
+VolumeName=bbs-mailspool
+
+[Install]
+WantedBy=default.target

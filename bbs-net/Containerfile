@@ -1,0 +1,5 @@
+FROM bbs-base
+
+RUN apk add tcpdump
+
+CMD ["sleep", "inf"]

@@ -1,0 +1,23 @@
+set autocollapse
+set append
+set asksend
+set crt
+set editheaders
+set emptystart
+set fullnames
+set history-gabby=all history-gabby-persist
+set hold
+set indentprefix="> "
+set followup-to-honour=ask-yes
+set markanswered
+set mime-counter-evidence=0b1111
+set keep
+set keepsave
+set recipients-in-cc
+set reply-to-honour=ask-yes
+set sendcharsets=utf-8,iso-8859-1
+set showname
+set showto
+retain date sender from to cc subject message-id mail-followup-to reply-to
+set prompt="mail> "
+set dot

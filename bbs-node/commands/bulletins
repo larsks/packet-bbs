@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec mail -S noemptystart -S prompt="bulletins> " -R -f /data/bulletins

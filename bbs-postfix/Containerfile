@@ -1,0 +1,10 @@
+FROM bbs-base
+
+RUN apk add postfix mailx make vim bash less
+RUN adduser -D -u 1000 -h /vmail -s /bin/bash bbsmail
+COPY ./postfix /etc/postfix/
+COPY bbsmail /usr/bin/
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["bash", "/entrypoint.sh"]
+CMD ["postfix", "start-fg"]
