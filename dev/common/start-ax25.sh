@@ -14,7 +14,10 @@ while ! [ -c /run/radio/ptyudp1 ]; do sleep 1; done
 ax25ipd -c /etc/ax25/ax25ipd-udp0.conf -d /run/radio/ptyudp0
 ax25ipd -c /etc/ax25/ax25ipd-udp1.conf -d /run/radio/ptyudp1
 
-kissattach -l $(readlink /run/radio/kissudp0) udp0
-kissattach -l $(readlink /run/radio/kissudp1) udp1
+kissattach -l "$(readlink /run/radio/kissudp0)" udp0
+kissattach -l "$(readlink /run/radio/kissudp1)" udp1
+
+kissparms -p udp0 -c 1
+kissparms -p udp1 -c 1
 
 ax25d -l
