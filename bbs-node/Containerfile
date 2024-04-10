@@ -5,7 +5,8 @@ RUN apk add bash curl mailx vim runuser util-linux msmtp less
 COPY entrypoint.sh /entrypoint.sh
 COPY profile /etc/profile
 # only for s-nail
-#COPY mail.rc msmtprc /etc/
+#COPY mail.rc /etc/
+COPY msmtprc /etc/
 COPY commands/* /usr/bin/
 RUN ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 ENTRYPOINT ["bash", "/entrypoint.sh"]
