@@ -1,3 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-exec mail -S noemptystart -S prompt="bulletins> " -R -f /data/bulletins
+: "${BBS_BULLETINS:=/data/bulletins}"
+
+if [[ -s "$BBS_BULLETINS" ]]; then
+	exec mail -f "$BBS_BULLETINS"
+else
+	echo "No bulletins."
+fi
