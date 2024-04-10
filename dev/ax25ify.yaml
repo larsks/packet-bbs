@@ -1,0 +1,66 @@
+- hosts: all
+
+- hosts: all
+  gather_facts: false
+  tasks:
+    - lineinfile:
+        path: /etc/hosts
+        line: "{{ hostvars[item].ansible_default_ipv4.address }} {{ item }}"
+      loop: "{{ groups.radio }}"
+        
+    - hostname:
+        name: "{{ inventory_hostname }}"
+
+    - package:
+        state: present
+        name:
+          - ax25-tools
+          - ax25-apps
+          - kernel-modules-extra
+          - socat
+          - git
+          - podman
+          - strace
+
+    - lineinfile:
+        create: true
+        path: /etc/modules-load.d/radio.conf
+        line: "{{ item }}"
+      loop:
+        - ax25
+        - netrom
+
+    - replace:
+        path: "{{ item }}"
+        regexp: "^blacklist"
+        replace: "#blacklist"
+      loop:
+        - /etc/modprobe.d/ax25-blacklist.conf
+        - /etc/modprobe.d/netrom-blacklist.conf
+
+    - copy:
+        src: common/start-ax25.sh
+        dest: /usr/local/bin/start-ax25.sh
+        mode: 0755
+
+    - copy:
+        src: "{{ item }}"
+        dest: /etc/ax25/
+      loop:
+      - "{{ inventory_hostname }}/axports"
+      - "{{ inventory_hostname }}/ax25d.conf"
+      - "{{ inventory_hostname }}/ax25ipd-udp0.conf"
+      - "{{ inventory_hostname }}/ax25ipd-udp1.conf"
+
+    - lineinfile:
+        path: /etc/systemd/system.conf
+        line: "{{ item }}"
+        regexp: "^{{ item.split('=')|first }}"
+      loop:
+        - RuntimeWatchdogSec=5
+        - RebootWatchdogSec=5
+
+    - copy:
+        src: common/spam-uptime.sh
+        dest: /usr/local/bin/spam-uptime.sh
+        mode: 0755

@@ -1,0 +1,4 @@
+#portname       callsign        speed   paclen  window  description
+udp0 N1LKS-3 9600 255 2 axudp0
+udp1 N1LKS-4 9600 255 2 axudp1
+

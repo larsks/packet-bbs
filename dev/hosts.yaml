@@ -1,0 +1,6 @@
+radio:
+  vars:
+    ansible_user: root
+  hosts:
+    node0.virt:
+    node1.virt:
