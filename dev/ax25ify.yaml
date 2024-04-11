@@ -21,6 +21,7 @@
           - git
           - podman
           - strace
+          - policycoreutils-python-utils
 
     - lineinfile:
         create: true
@@ -64,3 +65,8 @@
         src: common/spam-uptime.sh
         dest: /usr/local/bin/spam-uptime.sh
         mode: 0755
+
+    - lineinfile:
+        path: /etc/selinux/config
+        line: SELINUX=permissive
+        regexp: "^SELINUX="
